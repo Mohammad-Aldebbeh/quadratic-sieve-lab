@@ -1,0 +1,156 @@
+{
+  "scope": "Finite exact factorization; no asymptotic or positive-density theorem",
+  "range": "even 1000 < n <= 2000",
+  "sigma": "1/4; tested exactly via least_prime_factor**4 > n",
+  "validation": {
+    "root_and_count_checks": 272,
+    "quotient_checks": 47670,
+    "covariance_example": "2/9"
+  },
+  "results": [
+    {
+      "R": 7,
+      "kind": "prime",
+      "sign": 1,
+      "centers": 500,
+      "M1": 246,
+      "M2": 306,
+      "F2": 60,
+      "occupied": 216,
+      "cauchy_lower_bound": "3362/17",
+      "occupied_both_signs": 104
+    },
+    {
+      "R": 7,
+      "kind": "prime",
+      "sign": -1,
+      "centers": 500,
+      "M1": 276,
+      "M2": 356,
+      "F2": 80,
+      "occupied": 236,
+      "cauchy_lower_bound": "19044/89",
+      "occupied_both_signs": 104
+    },
+    {
+      "R": 7,
+      "kind": "rough_squarefree_P2",
+      "sign": 1,
+      "centers": 500,
+      "M1": 684,
+      "M2": 1144,
+      "F2": 460,
+      "occupied": 454,
+      "cauchy_lower_bound": "58482/143",
+      "occupied_both_signs": 421
+    },
+    {
+      "R": 7,
+      "kind": "rough_squarefree_P2",
+      "sign": -1,
+      "centers": 500,
+      "M1": 691,
+      "M2": 1151,
+      "F2": 460,
+      "occupied": 461,
+      "cauchy_lower_bound": "477481/1151",
+      "occupied_both_signs": 421
+    },
+    {
+      "R": 19,
+      "kind": "prime",
+      "sign": 1,
+      "centers": 500,
+      "M1": 460,
+      "M2": 758,
+      "F2": 298,
+      "occupied": 329,
+      "cauchy_lower_bound": "105800/379",
+      "occupied_both_signs": 249
+    },
+    {
+      "R": 19,
+      "kind": "prime",
+      "sign": -1,
+      "centers": 500,
+      "M1": 626,
+      "M2": 1234,
+      "F2": 608,
+      "occupied": 380,
+      "cauchy_lower_bound": "195938/617",
+      "occupied_both_signs": 249
+    },
+    {
+      "R": 19,
+      "kind": "rough_squarefree_P2",
+      "sign": 1,
+      "centers": 500,
+      "M1": 1353,
+      "M2": 4097,
+      "F2": 2744,
+      "occupied": 497,
+      "cauchy_lower_bound": "1830609/4097",
+      "occupied_both_signs": 495
+    },
+    {
+      "R": 19,
+      "kind": "rough_squarefree_P2",
+      "sign": -1,
+      "centers": 500,
+      "M1": 1525,
+      "M2": 5213,
+      "F2": 3688,
+      "occupied": 498,
+      "cauchy_lower_bound": "2325625/5213",
+      "occupied_both_signs": 495
+    },
+    {
+      "R": 43,
+      "kind": "prime",
+      "sign": 1,
+      "centers": 500,
+      "M1": 924,
+      "M2": 2436,
+      "F2": 1512,
+      "occupied": 439,
+      "cauchy_lower_bound": "10164/29",
+      "occupied_both_signs": 390
+    },
+    {
+      "R": 43,
+      "kind": "prime",
+      "sign": -1,
+      "centers": 500,
+      "M1": 1028,
+      "M2": 2982,
+      "F2": 1954,
+      "occupied": 448,
+      "cauchy_lower_bound": "528392/1491",
+      "occupied_both_signs": 390
+    },
+    {
+      "R": 43,
+      "kind": "rough_squarefree_P2",
+      "sign": 1,
+      "centers": 500,
+      "M1": 2594,
+      "M2": 14830,
+      "F2": 12236,
+      "occupied": 499,
+      "cauchy_lower_bound": "3364418/7415",
+      "occupied_both_signs": 499
+    },
+    {
+      "R": 43,
+      "kind": "rough_squarefree_P2",
+      "sign": -1,
+      "centers": 500,
+      "M1": 2607,
+      "M2": 15445,
+      "F2": 12838,
+      "occupied": 500,
+      "cauchy_lower_bound": "6796449/15445",
+      "occupied_both_signs": 499
+    }
+  ]
+}
