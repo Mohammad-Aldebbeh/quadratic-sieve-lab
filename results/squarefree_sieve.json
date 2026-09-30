@@ -1,0 +1,237 @@
+{
+  "scope": "Avoidance of selected prime squares only; not global squarefreeness or primality",
+  "primes": [
+    2,
+    3,
+    5,
+    7
+  ],
+  "start_exclusive": 500,
+  "stop_inclusive": 1000,
+  "results": [
+    {
+      "offsets": [
+        3
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 0,
+        "5": 0,
+        "7": 2
+      },
+      "full_period_survivors": 42300,
+      "density": "47/49",
+      "interval_survivors": 480,
+      "interval_main_term": "23500/49",
+      "interval_error": "20/49"
+    },
+    {
+      "offsets": [
+        -3
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 0,
+        "5": 0,
+        "7": 0
+      },
+      "full_period_survivors": 44100,
+      "density": "1",
+      "interval_survivors": 500,
+      "interval_main_term": "500",
+      "interval_error": "0"
+    },
+    {
+      "offsets": [
+        3,
+        -3
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 0,
+        "5": 0,
+        "7": 2
+      },
+      "full_period_survivors": 42300,
+      "density": "47/49",
+      "interval_survivors": 480,
+      "interval_main_term": "23500/49",
+      "interval_error": "20/49"
+    },
+    {
+      "offsets": [
+        5
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 2,
+        "5": 0,
+        "7": 2
+      },
+      "full_period_survivors": 32900,
+      "density": "47/63",
+      "interval_survivors": 372,
+      "interval_main_term": "23500/63",
+      "interval_error": "-64/63"
+    },
+    {
+      "offsets": [
+        -5
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 0,
+        "5": 0,
+        "7": 0
+      },
+      "full_period_survivors": 44100,
+      "density": "1",
+      "interval_survivors": 500,
+      "interval_main_term": "500",
+      "interval_error": "0"
+    },
+    {
+      "offsets": [
+        5,
+        -5
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 2,
+        "5": 0,
+        "7": 2
+      },
+      "full_period_survivors": 32900,
+      "density": "47/63",
+      "interval_survivors": 372,
+      "interval_main_term": "23500/63",
+      "interval_error": "-64/63"
+    },
+    {
+      "offsets": [
+        5,
+        11
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 4,
+        "5": 2,
+        "7": 2
+      },
+      "full_period_survivors": 21620,
+      "density": "1081/2205",
+      "interval_survivors": 246,
+      "interval_main_term": "108100/441",
+      "interval_error": "386/441"
+    },
+    {
+      "offsets": [
+        0
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 4,
+        "3": 3,
+        "5": 5,
+        "7": 7
+      },
+      "full_period_survivors": 0,
+      "density": "0",
+      "interval_survivors": 0,
+      "interval_main_term": "0",
+      "interval_error": "0"
+    },
+    {
+      "offsets": [
+        2
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 2,
+        "5": 0,
+        "7": 0
+      },
+      "full_period_survivors": 34300,
+      "density": "7/9",
+      "interval_survivors": 389,
+      "interval_main_term": "3500/9",
+      "interval_error": "1/9"
+    },
+    {
+      "offsets": [
+        4
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 4,
+        "3": 0,
+        "5": 2,
+        "7": 0
+      },
+      "full_period_survivors": 0,
+      "density": "0",
+      "interval_survivors": 0,
+      "interval_main_term": "0",
+      "interval_error": "0"
+    },
+    {
+      "offsets": [
+        9
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 3,
+        "5": 2,
+        "7": 0
+      },
+      "full_period_survivors": 27048,
+      "density": "46/75",
+      "interval_survivors": 305,
+      "interval_main_term": "920/3",
+      "interval_error": "-5/3"
+    },
+    {
+      "offsets": [
+        5,
+        5,
+        30
+      ],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 2,
+        "5": 0,
+        "7": 2
+      },
+      "full_period_survivors": 32900,
+      "density": "47/63",
+      "interval_survivors": 372,
+      "interval_main_term": "23500/63",
+      "interval_error": "-64/63"
+    },
+    {
+      "offsets": [],
+      "period": 44100,
+      "bad_counts": {
+        "2": 0,
+        "3": 0,
+        "5": 0,
+        "7": 0
+      },
+      "full_period_survivors": 44100,
+      "density": "1",
+      "interval_survivors": 500,
+      "interval_main_term": "500",
+      "interval_error": "0"
+    }
+  ]
+}

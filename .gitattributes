@@ -1,0 +1,5 @@
+# Keep prose/code portable; preserve exact historical and generated data bytes.
+* text=auto eol=lf
+*.pdf -text
+results/*.csv -text whitespace=cr-at-eol
+results/*.json -text whitespace=cr-at-eol

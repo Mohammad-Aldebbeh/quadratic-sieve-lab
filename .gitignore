@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+*.aux
+*.log
+*.out
+*.toc
+*.xdv
+*.synctex.gz
+*.patch
+*.zip
+.env
+.env.*
+*.pem
+*.key
+Backup and review/
+START HERE.txt
+Final Paper.pdf
+results/squarefree-small/

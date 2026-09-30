@@ -1,0 +1,732 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Pset}{\mathcal P}
+\newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\ind}{\mathbf 1}
+\title{Local sieves, correlations, and witness counts\\for shifted even squares}
+\author{Mohammad Aldebbeh}
+\date{30 September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the shifted even square $G_a(m)=4m^2+a$, we count residue classes
+avoiding a finite set of prime divisors or prime-square divisors.
+Quadratic residues and the Chinese remainder theorem give exact
+densities, including joint densities for several shifts at the same
+center. We classify the roots modulo $p^2$ by an elementary lifting
+argument and obtain explicit local counts for the opposite-sign pair
+$4m^2\pm q$, with $q$ an odd prime. This pair has no local obstruction
+for either finite sieve. Exact computations implement the formulas;
+a separate factorization experiment compares prime witnesses with
+rough squarefree almost-prime witnesses. Finite moment inequalities
+relate the number of witnesses to the number of occupied centers.
+The results concern finite local sieves and do not establish global
+squarefreeness or simultaneous prime values.
+\end{abstract}
+\tableofcontents
+
+\section{Problem and notation}
+For an even positive integer $n=2m$ and an odd prime $q$, consider
+\[
+ n^2+q=4m^2+q,\qquad n^2-q=4m^2-q.
+\]
+Before asking whether these values are prime, one can ask which centers
+are ruled out by a particular divisor. That question is periodic and
+can be answered exactly. The same idea works for prime squares and
+provides a finite local test towards squarefreeness.
+
+\begin{definition}
+For an integer $a$, put $G_a(m)=4m^2+a$. For $d\ge1$, define
+\[
+ R_a(d)=\{r\in\{0,\ldots,d-1\}:d\mid G_a(r)\},
+ \qquad \rho_a(d)=|R_a(d)|.
+\]
+Let $\Pset$ be a finite set of distinct primes, and write
+\[
+ P=\prod_{p\in\Pset}p,\qquad M=\prod_{p\in\Pset}p^2=P^2.
+\]
+For a finite set of integer offsets $\mathcal A$, a prime-sieve survivor
+is a center for which $p\nmid G_a(m)$ for all $a\in\mathcal A$ and
+$p\in\Pset$. A prime-square-sieve survivor instead requires
+$p^2\nmid G_a(m)$ for every such $a,p$.
+\end{definition}
+
+All products in this note are finite. An empty product is $1$;
+an empty offset family imposes no restrictions. Prime-sieve survival
+has period $P$, and prime-square-sieve survival has period $M$.
+These are valid periods, not necessarily the smallest ones.
+The local statements allow negative centers and arbitrary integer
+offsets, including zero.
+
+There are two counting questions in the project. Fixing offsets and
+varying $m$ gives a local sieve count. Fixing $n$ and searching over
+prime offsets $q$ gives a witness count. The experiments measure both,
+but the two counts have different quantifiers. In particular, saying
+that both signs have a witness allows different offsets on the two
+sides; asking for the same $q$ to work twice is stronger.
+
+\begin{definition}
+For $v>1$, write $v=\prod_p p^{e_p}$ and $\Omega(v)=\sum_p e_p$.
+A prime witness is a prime value $v=n^2\pm q$. A rough squarefree
+$P_2$ witness is a value $v>1$ with every $e_p\le1$,
+$\Omega(v)\le2$, and least prime divisor $P^-(v)>n^{1/4}$.
+\end{definition}
+
+Here $P_2$ means at most two prime factors, counted with multiplicity.
+Primes can qualify, whereas prime squares cannot. The program tests
+roughness by $(P^-(v))^4>n$, with exact integers. Values at most $1$
+are in neither witness class. These are conditions on the fully
+factored value, stronger than passing a fixed local sieve.
+
+For an odd prime $p$, the Legendre symbol $\leg{t}{p}$ is $0$ if
+$p\mid t$, $1$ if $t$ is a nonzero square modulo $p$, and $-1$
+otherwise. This definition is enough for the root counts below.
+
+\section{Local divisibility modulo primes}
+\begin{proposition}[Prime root count]\label{prop:roots}
+For an integer $a$ and an odd prime $p$,
+\[
+ p\mid G_a(m)\iff (2m)^2\equiv-a\pmod p,
+ \qquad \rho_a(p)=1+\leg{-a}{p}.
+\]
+At $2$, the count is $0$ for odd $a$ and $2$ for even $a$.
+\end{proposition}
+\begin{proof}
+Multiplication by $2$ is a bijection modulo an odd prime.
+The equation $x^2=0$ has just the root $0$ in the field $\mathbb F_p$.
+A nonzero square has two distinct roots $x,-x$: any other root $y$
+would satisfy $(y-x)(y+x)=0$, so $y=x$ or $y=-x$.
+A nonsquare has no root by definition. Finally,
+$4m^2+a\equiv a\pmod2$ for both classes of $m$.
+\end{proof}
+
+The usual description ``zero or two roots'' therefore requires
+$p\nmid a$. For $a=\pm q$ and $p=q$, the single bad class is
+$m\equiv0\pmod q$. At $2$, neither odd offset removes a center.
+
+\begin{proposition}[Squarefree moduli]\label{prop:crt}
+For squarefree $d\ge1$,
+\[
+ \rho_a(d)=\prod_{p\mid d}\rho_a(p).
+\]
+If $a$ is odd, this is at most $2^{\omega(d)}$, where $\omega(d)$
+counts the distinct prime factors. At $d=1$, the count is $1$.
+\end{proposition}
+\begin{proof}
+The Chinese remainder theorem (CRT) bijects classes modulo $d$ with
+tuples of classes modulo its prime factors. Under this bijection,
+the roots form the Cartesian product of the local root sets.
+Taking cardinalities proves the formula and the preceding proposition
+gives the bound. Modulo $1$, the sole canonical class is $0$.
+\end{proof}
+
+CRT combines coprime moduli. It does not treat repeated prime factors
+as independent, or different offsets at one prime as independent.
+
+\section{Finite prime sieves and interval counts}
+For integer endpoints $L\le U$, put $H=U-L$ and
+\[
+ A_a(d;L,U)=\#\{m:L<m\le U,\ d\mid G_a(m)\}.
+\]
+\begin{lemma}[Count in one residue class]\label{lem:interval}
+For $d\ge1$ and $0\le r<d$, the number of integers in $(L,U]$
+congruent to $r$ modulo $d$ is
+\[
+ \left\lfloor\frac{U-r}{d}\right\rfloor-
+ \left\lfloor\frac{L-r}{d}\right\rfloor.
+\]
+It differs from $H/d$ by at most $1$. Hence
+\[
+ \left|A_a(d;L,U)-H\frac{\rho_a(d)}d\right|\le\rho_a(d).
+\]
+\end{lemma}
+\begin{proof}
+Write an integer in the class as $r+kd$ and count $k$ between the
+two endpoints. Each floor differs from its argument by a number in
+$(-1,0]$, giving the error bound. Sum over the roots in $R_a(d)$.
+\end{proof}
+
+Write $S_a(L,U;P)$ for the prime-sieve survivor count of one shift,
+and put $\delta_a(P)=\prod_{p\mid P}(1-\rho_a(p)/p)$.
+\begin{theorem}[Finite inclusion-exclusion]\label{thm:sieve}
+For $P$ a product of distinct primes,
+\[
+ S_a(L,U;P)=\sum_{d\mid P}\mu(d)A_a(d;L,U),
+ \qquad \mu(d)=(-1)^{\omega(d)}.
+\]
+Moreover,
+\[
+ \left|S_a(L,U;P)-H\delta_a(P)\right|
+ \le\prod_{p\mid P}(1+\rho_a(p)).
+\]
+For odd $a$ and $k$ odd sieving primes, the bound is at most $3^k$.
+\end{theorem}
+\begin{proof}
+For each $m$, expand the finite product
+\[
+ \ind_{\gcd(G_a(m),P)=1}
+ =\prod_{p\mid P}(1-\ind_{p\mid G_a(m)})
+ =\sum_{d\mid P}\mu(d)\ind_{d\mid G_a(m)}.
+\]
+Summing gives the identity. Lemma~\ref{lem:interval} bounds the total
+error by $\sum_{d\mid P}\rho_a(d)$. The CRT factorization gives
+\[
+ \sum_{d\mid P}\rho_a(d)=\prod_{p\mid P}(1+\rho_a(p)),
+ \qquad
+ \sum_{d\mid P}\frac{\mu(d)\rho_a(d)}d
+ =\prod_{p\mid P}\left(1-\frac{\rho_a(p)}p\right).
+\]
+For odd $a$, the factor at $2$ is $1$, and each other error factor
+is at most $3$.
+\end{proof}
+
+Adding primes excludes more divisors, but this elementary error bound
+grows. It can exceed the interval length. For short windows, the exact
+residue-class count will be more useful than replacing it by a density.
+
+\section{Several offsets at the same center}
+\begin{lemma}[Overlap of bad classes]\label{lem:overlap}
+For integers $a,b$ and any positive modulus $d$, the sets $R_a(d)$
+and $R_b(d)$ are identical if $a\equiv b\pmod d$, and disjoint otherwise.
+\end{lemma}
+\begin{proof}
+Congruent offsets define the same congruence. A common root would
+give $d\mid G_a(m)-G_b(m)=a-b$.
+\end{proof}
+
+\begin{proposition}[Local covariance]\label{prop:covariance}
+Choose $m$ uniformly modulo a prime $p$ and let $I_a=\ind_{p\mid G_a(m)}$.
+Then
+\[
+ \operatorname{Cov}(I_a,I_b)=
+ \begin{cases}
+ \displaystyle\frac{\rho_a(p)}p\left(1-\frac{\rho_a(p)}p\right),
+    &a\equiv b\pmod p,\\[6pt]
+ \displaystyle-\frac{\rho_a(p)\rho_b(p)}{p^2},&a\not\equiv b\pmod p.
+ \end{cases}
+\]
+\end{proposition}
+\begin{proof}
+The expectations of $I_a,I_b$ are $\rho_a(p)/p,\rho_b(p)/p$.
+By Lemma~\ref{lem:overlap}, the expectation of $I_aI_b$ is
+$\rho_a(p)/p$ for congruent offsets and zero otherwise.
+Subtract the product of the expectations; in the first case the
+two root counts agree.
+\end{proof}
+
+For $a=5,b=11,p=3$, both root sets are $\{1,2\}$ and the covariance
+is $2/9$. Distinct offset residues with nonempty root sets instead have
+negative covariance. These probabilities are on a finite residue
+space; they are not probabilities of prime events on the integers.
+
+\begin{theorem}[Joint prime-sieve density]\label{thm:joint}
+For a finite offset family $\mathcal A$, let
+\[
+ \beta_{\mathcal A}(p)=\left|\bigcup_{a\in\mathcal A}R_a(p)\right|
+ =\sum_{c\in\mathcal A\bmod p}\rho_c(p),
+\]
+where the sum uses one representative of each distinct offset residue.
+The number of classes modulo $P$ surviving for every offset is
+\[
+ N_{\mathcal A}(P)=\prod_{p\mid P}(p-\beta_{\mathcal A}(p)),
+ \qquad
+ \delta_{\mathcal A}(P)=\frac{N_{\mathcal A}(P)}P
+ =\prod_{p\mid P}\left(1-\frac{\beta_{\mathcal A}(p)}p\right).
+\]
+\end{theorem}
+\begin{proof}
+Lemma~\ref{lem:overlap} makes the root sets of distinct offset residues
+disjoint, proving the sum formula. There are $p-\beta_{\mathcal A}(p)$
+good local classes. CRT identifies the global good classes with their
+Cartesian product. Divide the resulting count by $P$.
+\end{proof}
+
+For two offsets, the bad count is $\rho_a(p)$ when $p\mid a-b$,
+and $\rho_a(p)+\rho_b(p)$ otherwise. Thus for $\{5,11\}$ at $3$,
+the joint good proportion is $1/3$, whereas multiplying the separate
+good proportions would incorrectly give $1/9$.
+Across distinct primes the product is exact because CRT supplies the
+bijection. Within one prime, the root union must be counted first.
+
+\section{Local squarefreeness modulo prime squares}
+The prime sieve removes every multiple of a selected prime.
+To test squarefreeness locally, we should instead remove only the
+multiples of its square. This changes the local problem: a root
+modulo $p$ need not lift, and a repeated root can have many lifts.
+
+\begin{proposition}[Prime-square root count]\label{prop:square-roots}
+For an odd prime $p$ and an integer $a$,
+\[
+ \rho_a(p^2)=
+ \begin{cases}
+ 1+\leg{-a}{p},&p\nmid a,\\
+ 0,&p\mid a,\quad p^2\nmid a,\\
+ p,&p^2\mid a.
+ \end{cases}
+\]
+At $p=2$, the count $\rho_a(4)$ is $4$ if $4\mid a$ and $0$ otherwise.
+\end{proposition}
+\begin{proof}
+At an odd prime, $x=2m$ is bijective modulo $p^2$, so the equation
+is $x^2\equiv-a\pmod{p^2}$.
+
+Suppose $p\nmid a$. Each root $x_0$ modulo $p$ is nonzero.
+Choose its representative $0\le x_0<p$ and write
+$x_0^2+a=pc$. Every lift has the form $x=x_0+pt$ with $0\le t<p$.
+Expanding and dividing by $p$ shows that it is a root modulo $p^2$
+exactly when
+\[
+ c+2x_0t\equiv0\pmod p.
+\]
+The coefficient $2x_0$ is invertible, so there is exactly one $t$.
+Every root modulo $p^2$ reduces to a root modulo $p$, and different
+roots have different reductions. The count is therefore unchanged.
+
+If $p\mid a$, reduction modulo $p$ forces $p\mid x$.
+Thus $p^2\mid x^2$, and the original congruence can hold only if
+$p^2\mid a$. This proves the zero count when $p$ divides $a$ just once.
+When $p^2\mid a$, the roots are precisely $x=pk$ modulo $p^2$,
+with $0\le k<p$, giving $p$ roots.
+
+Finally, $4m^2+a\equiv a\pmod4$ for all four classes of $m$.
+\end{proof}
+
+For example, $G_3$ has one root modulo $3$ but none modulo $9$;
+$G_9$ has the three roots $0,3,6$ modulo $9$.
+The zero offset falls in the last odd-prime case, and at $2$ every
+class is bad. An even offset such as $a=2$ has every class bad
+modulo $2$ but no bad class modulo $4$.
+
+\begin{theorem}[Joint finite prime-square sieve]\label{thm:square-sieve}
+For a finite family of integer offsets, define
+\[
+ \beta^{(2)}_{\mathcal A}(p)
+ =\left|\bigcup_{a\in\mathcal A}R_a(p^2)\right|
+ =\sum_{c\in\mathcal A\bmod p^2}\rho_c(p^2).
+\]
+The number of classes modulo $M$ for which every $G_a$ avoids
+every selected prime square is
+\[
+ N^{(2)}_{\mathcal A}(M)
+ =\prod_{p\in\Pset}(p^2-\beta^{(2)}_{\mathcal A}(p)),
+ \qquad
+ \delta^{(2)}_{\mathcal A}(M)
+ =\frac{N^{(2)}_{\mathcal A}(M)}M
+ =\prod_{p\in\Pset}\left(1-\frac{\beta^{(2)}_{\mathcal A}(p)}{p^2}\right).
+\]
+In particular, the density is positive exactly when
+$\beta^{(2)}_{\mathcal A}(p)<p^2$ for every selected prime.
+\end{theorem}
+\begin{proof}
+Apply Lemma~\ref{lem:overlap} with $d=p^2$. Offsets congruent modulo
+$p^2$ give identical bad sets, while distinct residues give disjoint
+bad sets. This proves the local sum, including the case $p=2$.
+The moduli $p^2$ for different primes are pairwise coprime,
+so CRT multiplies the numbers of good classes. Each factor is
+nonnegative, and a finite product is positive exactly when each
+factor is positive.
+\end{proof}
+
+For one offset the density is $\prod_{p\in\Pset}(1-\rho_a(p^2)/p^2)$.
+Both empty-set conventions agree with the theorem: with no primes
+the period is $1$ and its one class survives; with no offsets every
+class survives. Repeating an offset adds no restriction. Offsets
+congruent modulo $p$ can nevertheless be distinct modulo $p^2$:
+$5$ and $11$ coincide modulo $3$, but their bad sets modulo $9$
+are disjoint, each with two roots.
+
+The test here is $p^2\nmid G_a(m)$, not
+$\gcd(G_a(m),M)=1$. The latter would forbid $p$ itself and would
+simply repeat the prime sieve. For instance, $G_3(3)=39$ survives
+the square-of-$3$ test despite being divisible by $3$.
+
+\section{The opposite-sign pair}
+The family $\{q,-q\}$ permits an explicit comparison of the two sieves.
+The prime $q$ behaves differently from every other prime.
+
+\begin{theorem}[No local obstruction for either sieve]\label{cor:signs}
+Let $q$ be an odd prime and $\mathcal A=\{q,-q\}$. Its local bad counts are
+\[
+\begin{array}{c|cc}
+ p & \beta_{\mathcal A}(p) & \beta^{(2)}_{\mathcal A}(p)\\ \hline
+ p=2 &0&0\\
+ p=q &1&0\\
+ p\ne q,\ p\equiv3\pmod4 &2&2\\
+ p\ne q,\ p\equiv1\pmod4 &2+2\leg{q}{p}&2+2\leg{q}{p}
+\end{array}
+\]
+Thus $\beta_{\mathcal A}(p)<p$ and
+$\beta^{(2)}_{\mathcal A}(p)<p^2$ for every prime. Both finite
+survivor densities are positive for every finite prime set.
+\end{theorem}
+\begin{proof}
+At $2$, both offsets are odd, so there are no roots modulo $2$ or $4$.
+At $q$, both offsets give the root $0$ modulo $q$; neither offset
+is divisible by $q^2$, so neither polynomial has a root modulo $q^2$.
+
+At an odd prime $p\ne q$, the offsets are distinct modulo $p$ and
+modulo $p^2$, since $p\nmid2q$. Their root sets are disjoint at
+both moduli. Also $p\nmid q$, so the individual counts are unchanged
+under lifting. At either modulus the union count is
+\[
+ 2+\leg{q}{p}+\leg{-q}{p}.
+\]
+The identities $\leg{-q}{p}=\leg{-1}{p}\leg{q}{p}$ and
+$\leg{-1}{p}=(-1)^{(p-1)/2}$ give the table.
+
+These identities follow from Euler's criterion, which can be seen
+directly here. The squaring map on $\mathbb F_p^\times$ has kernel
+$\{1,-1\}$ and hence $(p-1)/2$ distinct square values. By Fermat's
+identity these are all roots of $x^{(p-1)/2}-1$; every other nonzero
+element is a root of $x^{(p-1)/2}+1$. Thus
+$t^{(p-1)/2}$ represents the Legendre symbol, and exponentiation
+respects multiplication. Substituting $t=-1$ gives its sign.
+
+For $p\equiv3\pmod4$, $2<p$, including $p=3$.
+For $p\equiv1\pmod4$, $p\ge5$ and the count is at most $4<p$.
+The cases $2,q$ are also strict. The square counts are at most $4$
+at the remaining odd primes, less than $p^2$.
+Theorems~\ref{thm:joint} and \ref{thm:square-sieve} now give positivity.
+\end{proof}
+
+In particular, the prime-square density can be written
+\[
+ \delta^{(2)}_{\{q,-q\}}(M)
+ =\prod_{\substack{p\in\Pset\\p\ne2,q}}
+ \left(1-\frac{2+\leg{q}{p}+\leg{-q}{p}}{p^2}\right).
+\]
+No factor is needed at $2$ or $q$. At $q$, prime-square survival
+allows all centers, whereas prime survival removes $m\equiv0\pmod q$.
+
+\begin{corollary}[A wider prime-square admissible family]\label{cor:family}
+Every finite family of nonzero squarefree integer offsets has positive
+density under every finite prime-square sieve. In particular, this
+holds for finite families of signed prime offsets.
+\end{corollary}
+\begin{proof}
+No prime square divides any offset $a$ in such a family. Consequently,
+$m=0$ is good modulo $p^2$ for every offset and every prime $p$.
+Each local good set is nonempty, so Theorem~\ref{thm:square-sieve} applies.
+\end{proof}
+
+Indeed, every multiple of $P$ is such a prime-square survivor,
+since $G_a(m)\equiv a\pmod{p^2}$ for each selected $p$.
+This does not make larger signed-prime families
+admissible for the prime sieve: $\{3,5,7\}$ already obstructs it at $3$.
+
+Each positive finite density supplies a surviving residue class,
+which repeats indefinitely. This guarantees centers surviving any
+one fixed finite sieve. It says nothing about surviving all prime
+squares simultaneously or producing simultaneous primes.
+
+\section{Exact implementation and interval evaluation}
+The code constructs local roots, takes the union over offsets,
+and combines the good classes by CRT. For prime squares, a
+nondegenerate root $r$ of $G_a$ modulo $p$ is lifted directly in
+the $m$ variable:
+\[
+ c=\frac{4r^2+a}{p},\qquad
+ t\equiv-c(8r)^{-1}\pmod p,\qquad m=r+pt.
+\]
+Here $8r$ is invertible when $p$ is odd and $p\nmid a$.
+This follows by expanding $G_a(r+pt)$; it is the same one-step
+argument as Proposition~\ref{prop:square-roots}. The singular cases
+and modulus $4$ are constructed separately.
+
+Suppose $r$ is good modulo the current period $D$ and $s$ is good
+modulo a coprime next modulus $h$, either $p$ or $p^2$. The combined
+canonical class is
+\[
+ r+D\big((s-r)D^{-1}\bmod h\big).
+\]
+The parenthesized residue lies in $\{0,\ldots,h-1\}$, so the result
+is in $[0,Dh)$ and has the required two residues. Each pair gives
+one distinct class, implementing the CRT bijection.
+
+\begin{proposition}[Exact interval evaluation]\label{prop:exact}
+Let $D\ge1$ be a period and $\mathcal R\subseteq\{0,\ldots,D-1\}$
+its survivor classes, with $N=|\mathcal R|$. Then
+\[
+ S(L,U)=\sum_{r\in\mathcal R}
+ \left(\left\lfloor\frac{U-r}D\right\rfloor-
+       \left\lfloor\frac{L-r}D\right\rfloor\right).
+\]
+If $H=tD+h$, $0\le h<D$, then
+\[
+ S(L,U)=tN+T,\qquad 0\le T\le\min(h,N).
+\]
+In particular $|S(L,U)-HN/D|\le N$, with equality of the count
+and main term whenever $D\mid H$.
+\end{proposition}
+\begin{proof}
+Sum Lemma~\ref{lem:interval} over $\mathcal R$. Partition the interval
+into $t$ consecutive blocks of $D$ integers and a remainder of $h$
+integers. Every full block contains each residue once; the remainder
+contains no repeated residue and at most $\min(h,N)$ good ones.
+Both $T$ and $hN/D$ lie in $[0,N]$, giving the error bound.
+If $h=0$, both are zero.
+\end{proof}
+
+Take $D=P$ for the prime sieve and $D=M$ for the prime-square sieve.
+For one shift, either this bound or the inclusion-exclusion bound
+can be smaller. The program uses the exact floor sum rather than
+rounding a density times the interval length.
+
+The reusable routines are in \texttt{src/arithmetic.py},
+\texttt{src/sieve.py}, and \texttt{src/squarefree.py}.
+Moduli are checked to be distinct primes. Empty prime sets use
+the period $1$. Local counts and densities use integers and rational
+arithmetic. Direct divisibility enumeration checks the constructed
+classes and interval counts independently. These checks verify
+the implementation; the proofs establish the formulas.
+Explicit class storage grows with the period and is intended for
+modest products. The repository's historical name
+\texttt{quadratic-sieve-lab} does not refer to an implementation of
+the classical quadratic-sieve factorization algorithm.
+
+\section{Divisor compatibility and witness moments}
+The local sieve fixes offsets. For the separate witness problem,
+two elementary tools help describe collisions and occupancy.
+
+\begin{proposition}[Divisor compatibility]\label{prop:quotient}
+Let $d,e$ be positive integers with $d\mid G_a(m)$. Write
+$g=\gcd(d,e)$, $d=gu$, $e=gv$, and $k=G_a(m)/d$. Then
+\[
+ e\mid G_b(m)\iff
+ g\mid a-b\ \hbox{ and }\ uk\equiv(a-b)/g\pmod v.
+\]
+In particular, simultaneous divisibility requires $\gcd(d,e)\mid a-b$.
+\end{proposition}
+\begin{proof}
+Subtraction gives $G_b(m)=guk-(a-b)$. If $e$ divides this value,
+then $g\mid a-b$. Under that condition, dividing by $g$ leaves
+exactly $v\mid uk-(a-b)/g$. Reverse the steps for sufficiency.
+\end{proof}
+
+The gcd condition alone is insufficient: with $a=3,b=5,m=1,d=7,e=5$,
+we have $d\mid G_a(1)$ and $\gcd(d,e)=1\mid a-b$, but
+$5\nmid G_b(1)=9$. Equal signs involve $q-r$ up to sign;
+opposite signs involve $q+r$ up to sign. No squarefreeness
+assumption on $d,e$ is needed.
+
+Let $\mathcal C$ be a finite set of $H$ centers. For one sign and
+witness class, let $\nu(n)$ count successful offsets and define
+\[
+ M_1=\sum_{n\in\mathcal C}\nu(n),\quad
+ M_2=\sum_{n\in\mathcal C}\nu(n)^2,\quad
+ F_2=\sum_{n\in\mathcal C}\nu(n)(\nu(n)-1),\quad
+ S=\#\{n\in\mathcal C:\nu(n)>0\}.
+\]
+The factorial moment $F_2$ counts ordered pairs of distinct successful
+offsets at the same center.
+
+\begin{proposition}[Moments and occupancy]\label{prop:moments}
+Always $M_2=M_1+F_2$ and $S\le\min(H,M_1)$. If $M_2>0$, then
+\[
+ \frac{M_1^2}{M_2}\le S,\qquad
+ 0\le M_1-S\le\frac{F_2}{2}.
+\]
+If $M_2=0$, all counts vanish; the lower bound is then interpreted as $0$.
+\end{proposition}
+\begin{proof}
+For a nonnegative integer $j$, $j^2=j+j(j-1)$.
+Every occupied center contributes at least one to $M_1$.
+Cauchy--Schwarz on the occupied centers gives $M_1^2\le SM_2$.
+Finally, $0\le j-\ind_{j>0}\le j(j-1)/2$: both sides vanish
+at $j=0$, and for $j\ge1$ this is $j-1\le j(j-1)/2$.
+Sum these inequalities. If $M_2=0$, every $\nu(n)^2$ is zero.
+\end{proof}
+
+If one separately proved $M_1\ge cHK$ and $M_2\le CH(K+K^2)$
+with $c,C,K>0$, this would imply
+\[
+ S\ge\frac{c^2}{C}H\frac{K}{1+K}.
+\]
+The moment hypotheses at unbounded scales are not proved here.
+
+For the sets $A_+,A_-\subseteq\mathcal C$ occupied on each sign,
+inclusion-exclusion gives
+\[
+ |A_+\cap A_-|\ge\max(0,|A_+|+|A_-|-H).
+\]
+Two disjoint sets can each occupy $40\%$ of the centers.
+Positive separate occupancy need not force overlap. Even when
+$A_+\cap A_-$ is nonempty, the two witnesses can use different offsets.
+
+\section{Exact finite experiments}
+\subsection{Fixed-offset prime and prime-square sieves}
+For $\Pset=\{2,3,5,7\}$, the prime period is $P=210$ and the
+prime-square period is $M=44{,}100$. Both experiments construct
+CRT classes, check a complete period by direct enumeration,
+and count the interval $500<m\le1000$.
+The following tables are exact finite counts.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Offsets & Classes mod $210$ & Density & Interval count\\
+\midrule
+$\{3\}$ &100&$10/21$&237\\
+$\{-3\}$ &140&$2/3$&333\\
+$\{3,-3\}$ &100&$10/21$&237\\
+$\{5\}$ &40&$4/21$&95\\
+$\{-5\}$ &168&$4/5$&400\\
+$\{5,-5\}$ &40&$4/21$&95\\
+$\{5,11\}$ &20&$2/21$&47\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Offsets & Classes mod $44{,}100$ & Density & Interval count\\
+\midrule
+$\{3\}$ &42,300&$47/49$&480\\
+$\{-3\}$ &44,100&$1$&500\\
+$\{3,-3\}$ &42,300&$47/49$&480\\
+$\{5\}$ &32,900&$47/63$&372\\
+$\{-5\}$ &44,100&$1$&500\\
+$\{5,-5\}$ &32,900&$47/63$&372\\
+$\{5,11\}$ &21,620&$1081/2205$&246\\
+$\{9\}$ &27,048&$46/75$&305\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For $\{5,-5\}$, the prime-square bad counts at $2,3,5,7$ are
+$0,2,0,2$, giving $(1-2/9)(1-2/49)=47/63$.
+For $\{5,11\}$, the bad count at $3^2$ is $4$, despite the coincident
+root sets modulo $3$. These examples show both the change from prime
+to prime-square conditions and the need to group offsets at the
+correct modulus. Density $1$ for $\{-5\}$ refers only to these
+four selected squares.
+
+The prime-square experiment also includes offsets $0,2,4$, repeated
+offsets and an empty family. Tests cover empty prime sets, singular
+roots, negative intervals and invalid moduli. The interval length is
+$500$, not a multiple of either period, so an interval count need not
+equal $500$ times its period density.
+
+\subsection{Witnesses with varying prime offsets}
+The original experiment tests the $500$ even centers $1000<n\le2000$
+and the $13$ odd primes $3\le q\le43$ on both signs, giving
+$500\cdot13\cdot2=13{,}000$ values. Trial division fully factors each
+positive value. Every factor is checked for primality and the product
+is checked against the input. Failures are retained alongside successes.
+
+\begin{center}
+\begin{tabular}{rlrrr}
+\toprule
+$R$ & Witness class & Upper occupied & Lower occupied & Both sides\\
+\midrule
+7 & Prime &216&236&104\\
+7 & Rough squarefree $P_2$ &454&461&421\\
+19 & Prime &329&380&249\\
+19 & Rough squarefree $P_2$ &497&498&495\\
+43 & Prime &439&448&390\\
+43 & Rough squarefree $P_2$ &499&500&499\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The last column allows different offsets on the two signs.
+At $R=7$, upper prime witnesses have $M_1=246$, $M_2=306$,
+$F_2=60$, and $S=216$. Thus the lower bound is
+$246^2/306=3362/17$, and $M_1-S=30=F_2/2$.
+The saved summary includes moments for all twelve sign/class/cutoff
+combinations. Rough squarefree $P_2$ occupancy is much higher in this
+window; it cannot be relabeled as prime occupancy.
+
+\subsection{Reproduction}
+From the repository root, with Python 3.10 or later and no third-party
+packages, run
+\begin{verbatim}
+python -m unittest discover -s tests -v
+python -m experiments.witness_counts
+python -m experiments.local_sieve
+python -m experiments.squarefree_sieve
+\end{verbatim}
+The witness experiment writes \texttt{results/witnesses.csv} and
+\texttt{results/summary.json}. The two sieve experiments each write
+a JSON record and a Markdown table in \texttt{results/}.
+The checked-in default results correspond to the tables above.
+Each module accepts \texttt{--help} and \texttt{--output}; the latter
+keeps alternative runs separate. The legacy entry point
+\texttt{experiment.py} still runs the witness experiment.
+
+Tests compare every offset residue modulo $p^2$ for primes through
+$19$ with brute-force roots, verify overlaps, and compare small CRT
+periods and intervals with direct divisibility tests. The original
+$272$ root/count checks and $47{,}670$ quotient checks are retained.
+These ranges describe software verification, not the scope of the proofs.
+
+\section{Limitations and status}
+A finite sieve survivor need not be prime or globally squarefree.
+For example, $G_5(2)=21$ avoids the primes $2,5,11$ but is composite.
+Also $G_9(2)=25$ avoids the prime squares $4,9$ but is not squarefree.
+Conversely, a prime value equal to a sieving prime is removed:
+$G_{-11}(2)=5$ fails the prime sieve containing $5$.
+
+For a positive value $v>1$, checking every prime up to $\sqrt v$
+does certify primality if no divisor is found: a composite value has
+a prime divisor at most $\sqrt v$. Checking prime-square divisibility
+for every prime up to $\sqrt v$ likewise certifies squarefreeness.
+Both are bounded tests for a specified value, rather than consequences
+of one fixed finite prime set as $m$ grows.
+
+The CRT densities are exact for periodic local survivor sets.
+They are not densities of prime values or of values avoiding every
+prime square. Positivity for every finite prime set does not by itself
+justify passing to an infinite set of restrictions. The opposite-sign
+theorem proves local admissibility and supplies no global
+simultaneous-squarefreeness or simultaneous-prime theorem.
+
+The witness experiment tests exact factorization, squarefreeness,
+the $P_2$ condition and roughness. A finite prime-square sieve alone
+does not supply those properties. Its tables concern the stated window
+and cutoffs, and the moment inequalities require separately proved
+moment estimates for any asymptotic deduction. No estimate uniform
+in a growing sieve period is claimed.
+
+The project uses elementary tools: quadratic residues, CRT, finite
+inclusion-exclusion, and Cauchy--Schwarz. The development here is their
+combination for several shifted squares, the extension to prime-square
+local conditions, and an exact implementation. Proofs of the stated
+results are included.
+
+\section{Further questions}
+\paragraph{1. Higher prime powers.}
+Determine $\rho_a(p^k)$ for $k\ge3$, separating the possible orders
+of divisibility of $a$. The nondegenerate one-step lift can be iterated;
+the repeated-root cases require a separate count. Compare finite
+power-free sieves and the exact periods of their survivor sets.
+
+\paragraph{2. Larger families and prime obstructions.}
+Classify minimal signed-prime-offset families with
+$\beta_{\mathcal A}(p)=p$, beginning at $3$ and $5$.
+Such families obstruct the prime sieve even though
+Corollary~\ref{cor:family} excludes prime-square obstructions.
+The criterion is whether the offset residues cover all values
+$-4m^2$ modulo $p$; the challenge is to give a useful classification.
+
+\paragraph{3. Discrepancy under translation.}
+For one fixed survivor set of period $D$ and a fixed length $H$,
+determine the maximum and minimum of $S(L,L+H)-HN/D$ as
+$L$ runs modulo $D$. The remainder count in
+Proposition~\ref{prop:exact} gives a starting bound.
+Can the arrangement of good classes improve it for these sieves?
+This is a finite combinatorial question for either kind of sieve.
+\end{document}

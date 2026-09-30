@@ -2,6 +2,16 @@
   "scope": "Finite exact factorization; no asymptotic or positive-density theorem",
   "range": "even 1000 < n <= 2000",
   "sigma": "1/4; tested exactly via least_prime_factor**4 > n",
+  "parameters": {
+    "lower_exclusive": 1000,
+    "upper_inclusive": 2000,
+    "offset_cutoffs": [
+      7,
+      19,
+      43
+    ],
+    "rows": 13000
+  },
   "validation": {
     "root_and_count_checks": 272,
     "quotient_checks": 47670,

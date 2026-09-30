@@ -1,0 +1,135 @@
+{
+  "scope": "Exact local survival, not primality or prime-witness occupancy",
+  "primes": [
+    2,
+    3,
+    5,
+    7
+  ],
+  "start_exclusive": 500,
+  "stop_inclusive": 1000,
+  "results": [
+    {
+      "offsets": [
+        3
+      ],
+      "period": 210,
+      "bad_counts": {
+        "2": 0,
+        "3": 1,
+        "5": 0,
+        "7": 2
+      },
+      "full_period_survivors": 100,
+      "density": "10/21",
+      "interval_survivors": 237,
+      "interval_main_term": "5000/21",
+      "interval_error": "-23/21"
+    },
+    {
+      "offsets": [
+        -3
+      ],
+      "period": 210,
+      "bad_counts": {
+        "2": 0,
+        "3": 1,
+        "5": 0,
+        "7": 0
+      },
+      "full_period_survivors": 140,
+      "density": "2/3",
+      "interval_survivors": 333,
+      "interval_main_term": "1000/3",
+      "interval_error": "-1/3"
+    },
+    {
+      "offsets": [
+        3,
+        -3
+      ],
+      "period": 210,
+      "bad_counts": {
+        "2": 0,
+        "3": 1,
+        "5": 0,
+        "7": 2
+      },
+      "full_period_survivors": 100,
+      "density": "10/21",
+      "interval_survivors": 237,
+      "interval_main_term": "5000/21",
+      "interval_error": "-23/21"
+    },
+    {
+      "offsets": [
+        5
+      ],
+      "period": 210,
+      "bad_counts": {
+        "2": 0,
+        "3": 2,
+        "5": 1,
+        "7": 2
+      },
+      "full_period_survivors": 40,
+      "density": "4/21",
+      "interval_survivors": 95,
+      "interval_main_term": "2000/21",
+      "interval_error": "-5/21"
+    },
+    {
+      "offsets": [
+        -5
+      ],
+      "period": 210,
+      "bad_counts": {
+        "2": 0,
+        "3": 0,
+        "5": 1,
+        "7": 0
+      },
+      "full_period_survivors": 168,
+      "density": "4/5",
+      "interval_survivors": 400,
+      "interval_main_term": "400",
+      "interval_error": "0"
+    },
+    {
+      "offsets": [
+        5,
+        -5
+      ],
+      "period": 210,
+      "bad_counts": {
+        "2": 0,
+        "3": 2,
+        "5": 1,
+        "7": 2
+      },
+      "full_period_survivors": 40,
+      "density": "4/21",
+      "interval_survivors": 95,
+      "interval_main_term": "2000/21",
+      "interval_error": "-5/21"
+    },
+    {
+      "offsets": [
+        5,
+        11
+      ],
+      "period": 210,
+      "bad_counts": {
+        "2": 0,
+        "3": 2,
+        "5": 3,
+        "7": 2
+      },
+      "full_period_survivors": 20,
+      "density": "2/21",
+      "interval_survivors": 47,
+      "interval_main_term": "1000/21",
+      "interval_error": "-13/21"
+    }
+  ]
+}
